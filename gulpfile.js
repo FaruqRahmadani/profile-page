@@ -30,7 +30,7 @@ gulp.task('sass', function () {
 });
 
 gulp.task('fonts', function () {
-    return gulp.src('./node_modules/**/*.{eot,svg,ttf,woff,woff2}')
+    return gulp.src('node_modules/**/*.{eot,ttf,woff,woff2}')
         .pipe(flatten())
         .pipe(gulp.dest("assets/fonts"));
 });
