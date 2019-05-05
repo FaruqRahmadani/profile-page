@@ -11,18 +11,8 @@
         z-index: 2;
     }
     .right-content{
-        color: white;
-        &::before{
-            content: '';
-            display: flex;
-            align-items: center;
-            height: 200px;
-            width: 4px;
-            background-color: white;
-            position: absolute;
-            right: 0;
-            border-radius: 18px;
-        }
+        border-right: #fff solid 5px;
+        padding: 48px 48px 48px 0;
     }
     &::after{
         content: '';
@@ -35,4 +25,17 @@
         bottom: 0;
         left: 0;
     }
+}
+.touch-icon{
+    text-decoration: none;
+    color: white;
+    margin: 5px;
+    .fa{
+        padding: 5px;
+    }
+}
+.img-profile{
+    border-radius: 50%;
+    max-width: 250px;
+    border: #fff solid 5px;
 }
