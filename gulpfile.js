@@ -5,7 +5,8 @@ var gulp = require('gulp'),
     browserSync = require('browser-sync'),
     notify = require('gulp-notify'),
     plumber = require('gulp-plumber'),
-    rename = require("gulp-rename");
+    rename = require("gulp-rename"),
+    flatten = require("gulp-flatten");
 
 var plumberErrorHandler = {
     errorHandler: notify.onError({
@@ -28,13 +29,19 @@ gulp.task('sass', function () {
         .pipe(gulp.dest("assets/css"));
 });
 
+gulp.task('fonts', function () {
+    return gulp.src('./node_modules/**/*.{eot,svg,ttf,woff,woff2}')
+        .pipe(flatten())
+        .pipe(gulp.dest("assets/fonts"));
+});
+
 gulp.task('js', function () {
     return gulp.src("dist/javascript/app.js")
         .pipe(webpack(require("./webpack.config.js")))
         .pipe(gulp.dest("assets/js"));
 });
 
-gulp.task('watch', ['sass', 'js'], function () {
+gulp.task('watch', ['sass', 'js', 'fonts'], function () {
     browserSync.init({
         server: "./"
     });
