@@ -1,0 +1,49 @@
+var gulp = require('gulp'),
+    sass = require('gulp-sass'),
+    autoprefixer = require('gulp-autoprefixer'),
+    webpack = require('webpack-stream'),
+    browserSync = require('browser-sync'),
+    notify = require('gulp-notify'),
+    plumber = require('gulp-plumber'),
+    rename = require("gulp-rename");
+
+var plumberErrorHandler = {
+    errorHandler: notify.onError({
+        title: 'Gulp',
+        message: 'Error: <%= error.message %>'
+    })
+};
+
+gulp.task('sass', function () {
+    return gulp.src("dist/stylesheet/app.scss")
+        .pipe(plumber(plumberErrorHandler))
+        .pipe(sass({
+            outputStyle: 'compressed',
+            includePaths: ['./node_modules']
+        }))
+        .pipe(autoprefixer())
+        .pipe(rename(function (path){
+            path.basename = 'main';
+        }))
+        .pipe(gulp.dest("assets/css"));
+});
+
+gulp.task('js', function () {
+    return gulp.src("dist/javascript/app.js")
+        .pipe(webpack(require("./webpack.config.js")))
+        .pipe(gulp.dest("assets/js"));
+});
+
+gulp.task('watch', ['sass', 'js'], function () {
+    browserSync.init({
+        server: "./"
+    });
+    gulp.watch("dist/stylesheet/**/*.**", ['sass']);
+    gulp.watch("dist/javascript/**/*.**", ['js']);
+    gulp.watch("assets/css/**/*.css").on('change', browserSync.reload);
+    gulp.watch("assets/js/**/*.js").on('change', browserSync.reload);
+    gulp.watch("*.php").on('change', browserSync.reload);
+    gulp.watch("*.html").on('change', browserSync.reload);
+});
+
+gulp.task('default', ['watch']);
