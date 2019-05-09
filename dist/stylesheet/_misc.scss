@@ -1,41 +1,51 @@
-.hero{
-    height: 100vh;
-    margin: 0;
-    background-image: url(/assets/img/hero.jpg);
-    background-size: 101%;
-    background-repeat: no-repeat;
-    .container{
-        min-height: 100%;
-    }
-    *{
-        z-index: 2;
-    }
-    .right-content{
-        border-right: #fff solid 5px;
-        padding: 48px 48px 48px 0;
-    }
-    &::after{
-        content: '';
-        display: block;
-        width: 100%;
-        height: 100%;
-        background-color: #000000;
-        opacity: 0.54;
-        position: absolute;
-        bottom: 0;
-        left: 0;
-    }
+body{
+  background-color: #E8E9E7;
+  height: 100vh;
+  font-family: 'Gudea', sans-serif;
 }
-.touch-icon{
-    text-decoration: none;
-    color: white;
-    margin: 5px;
-    .fa{
-        padding: 5px;
+
+.jumbotron-fluid{
+  color: #777776;
+  background-color: inherit;
+  .right-content{
+    text-align: right;
+    @media (max-width: 576px) {
+      text-align: center !important;
     }
-}
-.img-profile{
-    border-radius: 50%;
-    max-width: 250px;
-    border: #fff solid 5px;
+    h1{
+      font-family: 'Lato', sans-serif;
+    }
+    h5 {
+      font-style: italic;
+    }
+  }
+  .left-content{
+    .icon-container{
+      margin-top: 20px;
+    }
+    .touch-icon{
+      text-decoration: none;
+      color: #24A5DB;
+      i{
+        margin-right: 20px;
+      }
+    }
+    @media (max-width: 576px) {
+      text-align: center !important;
+      .icon-container{
+        margin: 10px 0 !important;
+      }
+      .touch-icon{
+        i{
+          margin: 15px;
+        }
+      }
+    }
+  }
+  .garis{
+    @media (min-width: 576px) {
+      border-left: 5px solid #777776;
+      border-radius: 25px;
+    }
+  }
 }
