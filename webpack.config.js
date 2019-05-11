@@ -1,4 +1,5 @@
-// ini file untuk konfigurasi webpack
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+
 module.exports = {
 	mode: "production",
 	entry : {
@@ -6,8 +7,19 @@ module.exports = {
 	},
 	output : {
 		path : __dirname + "/assets/js",
-		filename : "main.js"
+		filename : "main.js",
 	},
+	optimization: {
+    minimizer: [
+      new UglifyJsPlugin({
+        uglifyOptions: {
+          output: {
+            comments: false
+          }
+        }
+      })
+    ]
+  },
 	module : {
 		rules : [
 			{
