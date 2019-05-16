@@ -1,5 +1,5 @@
-$(document).keypress(function(e){
-  if (e.which == 102 || 70) {
+$(document).keypress("a", function(e){
+  if(e.ctrlKey){
     $("#touch-text").html("you found an easter egg maybe?")
     $(".jumbotron, .touch-icon").attr("style", "color: red !important;")
     $(".touch-list").append(
